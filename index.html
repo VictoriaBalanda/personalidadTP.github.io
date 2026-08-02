@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>presentación psicologia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pixel-blue-dark: #030712;
+            --pixel-blue-mid: #0a192f;
+            --pixel-blue-light: #172a45;
+            --pixel-cyan: #64ffda;
+            --pixel-cyan-glow: rgba(100, 255, 218, 0.4);
+            --pixel-white: #e6f1ff;
+            --pixel-yellow: #ffb703;
+        }
+
+        body {
+            background-color: var(--pixel-blue-dark);
+            color: var(--pixel-white);
+            font-family: 'VT323', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            
+            background-image: 
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+       
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+       
+        .pantalla {
+            display: flex;
+            background-color: var(--pixel-blue-mid);
+            border: 4px solid var(--pixel-cyan);
+            width: 95vw;
+            height: 90vh;
+            box-shadow: 0 0 35px var(--pixel-cyan-glow), inset 0 0 25px rgba(0, 0, 0, 0.9);
+            animation: fadeInScreen 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInScreen {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+       
+        .costado {
+            background-color: var(--pixel-blue-dark);
+            color: var(--pixel-white);
+            padding: 40px;
+            width: 32%;
+            border-right: 4px solid var(--pixel-cyan);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar {
+            background-color: var(--pixel-blue-light);
+            border: 4px solid var(--pixel-cyan);
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px var(--pixel-cyan-glow);
+            overflow: hidden; 
+            position: relative;
+        }
+
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+        }
+
+        .nombre {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem;
+            color: var(--pixel-cyan);
+            margin: 20px 0 10px 0;
+            text-shadow: 2px 2px 0px #000;
+            line-height: 1.4;
+            margin-top: 40px;
+        }
+
+        .edad {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            background: var(--pixel-yellow);
+            color: var(--pixel-blue-dark);
+            padding: 6px 12px;
+            border: 2px solid #000;
+            font-weight: bold;
+        }
+
+       
+        .contenido {
+            padding: 40px;
+            width: 65%;
+            background-color: var(--pixel-blue-mid);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .titulo {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            background-color: var(--pixel-blue-dark);
+            color: var(--pixel-cyan);
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--pixel-yellow);
+            border-bottom: 2px solid var(--pixel-cyan);
+        }
+
+        .bio {
+            background-color: var(--pixel-blue-light);
+            color: var(--pixel-white);
+            padding: 20px;
+            font-size: 1.4rem;
+            border: 2px solid var(--pixel-cyan);
+            margin-bottom: 30px;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+            line-height: 1.4;
+        }
+
+       
+        .caja inventario {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+     
+        .gusto {
+            position: relative;
+            background-color: var(--pixel-blue-dark);
+            border: 3px solid var(--pixel-cyan);
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gusto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+            opacity: 0.8;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+       
+        .gusto:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 20px var(--pixel-cyan-glow), 5px 8px 0px var(--pixel-yellow);
+            border-color: var(--pixel-yellow);
+        }
+
+        .gusto:hover img {
+            transform: scale(1.1); 
+            opacity: 0.35; 
+        }
+
+        .arcade-tooltip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(3, 7, 18, 0.95);
+            color: var(--pixel-yellow);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            text-align: center;
+            padding: 12px 10px;
+            border-top: 2px dashed var(--pixel-cyan);
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .gusto:hover .arcade-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .pantalla {
+                flex-direction: column;
+                height: auto;
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+            .costado, .contenido {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .costado {
+                border-right: none;
+                border-bottom: 4px solid var(--pixel-cyan);
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pantalla">
+        
+        <div class="costado">
+            <div>
+               
+                <div class="avatar">
+                    <img src="img/yo lol.jpeg" alt="galletita">
+                </div>
+                <div class="nombre">VICTORIA BALANDA</div>
+                <div class="edad">NIVEL 16</div>
+                <div style="margin-top: 15px; font-size: 1.4rem; color: var(--pixel-cyan);">CUMPLEAÑOS:05/05</div>
+                <div class="aclaracion" style="color: #64ffda; font-size: 1.3rem; margin-top: 50px;">la foto soy yo comiendo una galletita mientras hacia esto, sin comentarios</div>
+            </div>
+            <div style="font-size: 1.1rem; font-family: 'Press Start 2P'; color: var(--pixel-yellow); margin-top: 20px;">
+                PRESS START
+            </div>
+        </div>
+
+
+        <div class="contenido">
+            <div>
+                <div class="titulo">> INFO </div>
+                <div class="bio">
+                    naci en posadas el 05/05/2010, vivo con mis padres y mi hermano mas chico, amo a mis mejores amigas pia y emma, practico paddle, voy al gimnasio y tengo demasiados hobbies y gustos como para nombrarlos todos.
+                <div class="titulo">> ALGUNOS GUSTOS (Pasa el cursor)</div>
+                <div class="caja inventario">
+                    
+            
+                    <div class="gusto">
+                        <img src="img/xbox.jpg" alt="jueguitos">
+                        <div class="arcade-tooltip">jueguitos [mi favorito es skyrim]</div>
+                    </div>
+
+                   
+                    <div class="gusto">
+                        <img src="img/peli.jpg" alt="mete algo aca">
+                        <div class="arcade-tooltip">peliculas [particularmente star wars y el señor de los anillos]</div>
+                    </div>
+
+                  
+                    <div class="gusto">
+                        <img src="img/miedo.jpg" alt="Libros y terror">
+                        <div class="arcade-tooltip">libros y el terror</div>
+                    </div>
+
+                    
+                    <div class="gusto">
+                        <img src="img/milanesa.jpg" alt="Milanesa">
+                        <div class="arcade-tooltip">MILANESA DE POLLOOOOOO</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
